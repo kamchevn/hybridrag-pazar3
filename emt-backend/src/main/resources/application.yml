@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: hybrid-rag-api
+  neo4j:
+    uri: ${NEO4J_URI:bolt://localhost:7687}
+    authentication:
+      username: ${NEO4J_USERNAME:neo4j}
+      password: ${NEO4J_PASSWORD:password}
+
+server:
+  port: ${SERVER_PORT:8080}
+
+app:
+  ollama:
+    base-url: ${OLLAMA_BASE_URL:http://127.0.0.1:11434}
+  # increase if your local model takes longer to start/respond (CPU models may need >60s on first run)
+  timeout-seconds: ${OLLAMA_TIMEOUT_SECONDS:300}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000}
+
+hybrid:
+  index-name: ${HYBRID_INDEX_NAME:chunk_embed_p3}
+  top-k: ${HYBRID_TOP_K:8}
+  embed-model: ${HYBRID_EMBED_MODEL:nomic-embed-text}
+  default-model: ${HYBRID_DEFAULT_MODEL:llama3.1:8b}
+
+
